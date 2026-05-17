@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHotel.Views.Sobre"
+             Title="Sobre">
+
+    <VerticalStackLayout
+        Padding="30"
+        Spacing="20"
+        VerticalOptions="Center">
+
+        <Label
+            Text="Aplicativo Hotel"
+            FontSize="28"
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="Desenvolvido por Amanda Santos"
+            FontSize="20"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="Ano de desenvolvimento: 2026"
+            FontSize="18"
+            HorizontalOptions="Center" />
+        <Button Text="Agendar" Clicked="main_page" Grid.Row="6" Grid.Column="2" Margin="10" ></Button>
+    </VerticalStackLayout>
+</ContentPage>

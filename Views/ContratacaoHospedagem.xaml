@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHotel.Views.ContratacaoHospedagem"
+             Title="ContratacaoHospedagem">
+    <VerticalStackLayout VerticalOptions="CenterAndExpand"
+                         Padding="10"
+                         Spacing="10" >
+        <Label Text="Cálculo da Diária"
+               FontFamily="Kalam"
+               FontSize="50"
+               TextColor="{StaticResource Primary}" />
+        <Frame Padding="10">
+            <VerticalStackLayout>
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                      ColumnDefinitions="*,*,2*">
+                    <Label Grid.Row="0"  Grid.Column="0" 
+                           Text="Adultos: "/>
+                    <Label Grid.Row="0"  Grid.Column="1"
+                           BindingContext="{x:Reference stpAdultos}"
+                           Text="{Binding Value}"/>
+                    <Stepper Grid.Row="0" Grid.Column="2"
+                             x:Name="stpAdultos"
+                             Minimum="1"
+                             Maximum="10"/>
+                    <Label Grid.Row="1"  Grid.Column="0" 
+                           Text="Crianças: "/>
+                    <Label Grid.Row="1"  Grid.Column="1"
+                           BindingContext="{x:Reference stpCriancas}"
+                           Text="{Binding Value}"/>
+                    <Stepper Grid.Row="1" Grid.Column="2"
+                             x:Name="stpCriancas"
+                             Minimum="0"
+                             Maximum="10"/>
+                </Grid>
+                <Frame>
+                        <VerticalStackLayout>
+                            <Label Text="Esccolha a suíte" Grid.Row="2" Grid.Column="0"/>
+                            <Picker x:Name="pckQuarto" Grid.Row="2" Grid.Column="2"
+                                    Title="Selecione sua Acomodação" 
+                                    ItemDisplayBinding="{Binding Nome}"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                    <Frame>
+                        <VerticalStackLayout>
+                            <DatePicker x:Name="dtpInicio" Grid.Row="3" Grid.Column="2"
+                                        Format="dd/MM/yyyy" />
+                            <DatePicker x:Name="dtpFinal" Grid.Row="4" Grid.Column="2"
+                                        Format="dd/MM/yyyy" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                <Button Text="Calcular" Clicked="Button_Clicked" Grid.Row="5" Grid.Column="2" Margin="2"></Button>
+                
+                <Button Text="Sobre" Clicked="Sobre_Clicked" Grid.Row="6" Grid.Column="2" Margin="2" ></Button>
+            </VerticalStackLayout>
+            </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>
