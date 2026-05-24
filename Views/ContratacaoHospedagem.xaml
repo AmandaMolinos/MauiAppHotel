@@ -38,12 +38,13 @@
                             <Label Text="Esccolha a suíte" Grid.Row="2" Grid.Column="0"/>
                             <Picker x:Name="pckQuarto" Grid.Row="2" Grid.Column="2"
                                     Title="Selecione sua Acomodação" 
-                                    ItemDisplayBinding="{Binding Nome}"/>
+                                    ItemDisplayBinding="{Binding Descricao}"/>
                         </VerticalStackLayout>
                     </Frame>
                     <Frame>
                         <VerticalStackLayout>
                             <DatePicker x:Name="dtpInicio" Grid.Row="3" Grid.Column="2"
+                                        DateSelected="dtpInicio_DateSelected"
                                         Format="dd/MM/yyyy" />
                             <DatePicker x:Name="dtpFinal" Grid.Row="4" Grid.Column="2"
                                         Format="dd/MM/yyyy" />

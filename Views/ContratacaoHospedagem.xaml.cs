@@ -4,29 +4,39 @@ namespace MauiAppHotel.Views;
 
 public partial class ContratacaoHospedagem : ContentPage
 {
+
+	App PropriedadesApp;
 	public ContratacaoHospedagem()
 	{
 		InitializeComponent();
 
-		var listaQuarto = new List<Models.Quarto>();
+		PropriedadesApp = (App)Application.Current;
 
-		listaQuarto.Add(new Models.Quarto { Nome = "Casal Simples", Valor = 50 });
-		listaQuarto.Add(new Models.Quarto { Nome = "Casal Chique", Valor = 100 });
-		listaQuarto.Add(new Models.Quarto { Nome = "Suíte Simples", Valor = 150 });
-		listaQuarto.Add(new Models.Quarto { Nome = "Suíte Chique", Valor = 200 });
+		pckQuarto.ItemsSource = PropriedadesApp.lista_quartos;
 
-		pckQuarto.ItemsSource = listaQuarto;
-	}
+		dtpInicio.MinimumDate = DateTime.Now;
+		dtpFinal.MaximumDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day);
+
+        dtpFinal.MinimumDate = ((DateTime)dtpInicio.Date).AddDays(1);
+        dtpFinal.MaximumDate = ((DateTime)dtpInicio.Date).AddMonths(6);
+
+    }
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-		int dias;
-		dias = dtpFinal.Date.Value.Subtract(dtpInicio.Date.Value).Days;
+		try
+		{
 
-		double valor;
-		valor = dias * ((Models.Quarto)pckQuarto.SelectedItem).Valor;
-		valor *= (stpAdultos.Value + stpCriancas.Value/2);
-		DisplayAlertAsync("Valor da diária", "Deu R$ " + valor, "OK");
+			Navigation.PushAsync(new HospedagemContratada());
+
+		}
+		catch (Exception ex)
+		{
+			DisplayAlertAsync("Ops", ex.Message, "OK");
+
+		}
+		         
+		
     }
 
     private async void Sobre_Clicked(object sender, EventArgs e)
@@ -34,4 +44,13 @@ public partial class ContratacaoHospedagem : ContentPage
        await Navigation.PushAsync(new Sobre());
     }
 
+    private void dtpInicio_DateSelected(object sender, DateChangedEventArgs e)
+    {
+		DatePicker elemento = sender as DatePicker;
+
+        DateTime data_selecionada_inicio = elemento.Date.Value;
+
+        dtpFinal.MinimumDate = data_selecionada_inicio.AddDays(1);
+        dtpFinal.MaximumDate = data_selecionada_inicio.AddMonths(6);
+    }
 }
