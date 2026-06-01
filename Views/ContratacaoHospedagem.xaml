@@ -35,7 +35,7 @@
                 </Grid>
                 <Frame>
                         <VerticalStackLayout>
-                            <Label Text="Esccolha a suíte" Grid.Row="2" Grid.Column="0"/>
+                            <Label Text="Escolha a suíte" Grid.Row="2" Grid.Column="0"/>
                             <Picker x:Name="pckQuarto" Grid.Row="2" Grid.Column="2"
                                     Title="Selecione sua Acomodação" 
                                     ItemDisplayBinding="{Binding Descricao}"/>
@@ -54,6 +54,9 @@
                 <Button Text="Calcular" Clicked="Button_Clicked" Grid.Row="5" Grid.Column="2" Margin="2"></Button>
                 
                 <Button Text="Sobre" Clicked="Sobre_Clicked" Grid.Row="6" Grid.Column="2" Margin="2" ></Button>
+
+                <Button Text="Cadastro de Eventos" Clicked="Evento_Clicked"/> 
+                
             </VerticalStackLayout>
             </Frame>
 

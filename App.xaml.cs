@@ -6,6 +6,9 @@ namespace MauiAppHotel
 {
     public partial class App : Application
     {
+
+
+
         public List<Quarto> lista_quartos = new List<Quarto>
         {
             new Quarto()
@@ -32,6 +35,8 @@ namespace MauiAppHotel
                 ValorDiariaAdulto = 200.0,
                 ValorDiariaCrianca = 100.0
             }
+
+                        
         };
         public App()
         {

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppHotel.Views.ResumoEvento"
+    Title="Resumo do Evento">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="10">
+
+            <Label
+                Text="Resumo do Evento"
+                FontSize="28"
+                HorizontalOptions="Center"/>
+
+            <Label
+                Text="{Binding NomeEvento,
+                StringFormat='Evento: {0}'}"/>
+
+            <Label
+                Text="{Binding LocalEvento,
+                StringFormat='Local: {0}'}"/>
+
+            <Label
+                Text="{Binding DataInicio,
+                StringFormat='Data Início: {0:dd/MM/yyyy}'}"/>
+
+            <Label
+                Text="{Binding DataTermino,
+                StringFormat='Data Término: {0:dd/MM/yyyy}'}"/>
+
+            <Label
+                Text="{Binding NumeroParticipantes,
+                StringFormat='Participantes: {0}'}"/>
+
+            <Label
+                Text="{Binding CustoPorParticipante,
+                StringFormat='Custo por Participante: R$ {0:F2}'}"/>
+
+            <Label
+                Text="{Binding DuracaoDias,
+                StringFormat='Duração: {0} dias'}"/>
+
+            <Label
+                FontAttributes="Bold"
+                Text="{Binding CustoTotal,
+                StringFormat='Custo Total: R$ {0:F2}'}"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

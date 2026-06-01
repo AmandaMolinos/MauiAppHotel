@@ -1,56 +1,72 @@
-using Microsoft.Extensions.Options;
+using MauiAppHotel.Models;
 
 namespace MauiAppHotel.Views;
 
 public partial class ContratacaoHospedagem : ContentPage
 {
+    public ContratacaoHospedagem()
+    {
+        InitializeComponent();
 
-	App PropriedadesApp;
-	public ContratacaoHospedagem()
-	{
-		InitializeComponent();
+        PropriedadesApp = (App)Application.Current;
 
-		PropriedadesApp = (App)Application.Current;
+        pckQuarto.ItemsSource = PropriedadesApp.lista_quartos;
 
-		pckQuarto.ItemsSource = PropriedadesApp.lista_quartos;
+        dtpInicio.MinimumDate = DateTime.Now;
 
-		dtpInicio.MinimumDate = DateTime.Now;
-		dtpFinal.MaximumDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day);
-
-        dtpFinal.MinimumDate = ((DateTime)dtpInicio.Date).AddDays(1);
-        dtpFinal.MaximumDate = ((DateTime)dtpInicio.Date).AddMonths(6);
-
+        dtpFinal.MinimumDate = dtpInicio.Date.Value.AddDays(1);
+        dtpFinal.MaximumDate = dtpInicio.Date.Value.AddMonths(6);
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    public App? PropriedadesApp { get; private set; }
+
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-		try
-		{
+        try
+        {
+            Hospedagem h = new Hospedagem
+            {
+                QuartoSelecionado = (Quarto)pckQuarto.SelectedItem,
+                QtdAdultos = Convert.ToInt32(stpAdultos.Value),
+                QtdCriancas = Convert.ToInt32(stpCriancas.Value),
+                DataCheckIn = dtpInicio.Date.Value,
+                DataCheckOut = dtpFinal.Date.Value,
+            };
 
-			Navigation.PushAsync(new HospedagemContratada());
-
-		}
-		catch (Exception ex)
-		{
-			DisplayAlertAsync("Ops", ex.Message, "OK");
-
-		}
-		         
-		
+            await Navigation.PushAsync(new HospedagemContratada()
+            {
+                BindingContext = h
+            });
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("Ops", ex.Message, "OK");
+        }
     }
 
     private async void Sobre_Clicked(object sender, EventArgs e)
     {
-       await Navigation.PushAsync(new Sobre());
+        await Navigation.PushAsync(new Sobre());
     }
 
     private void dtpInicio_DateSelected(object sender, DateChangedEventArgs e)
     {
-		DatePicker elemento = sender as DatePicker;
+        DatePicker elemento = sender as DatePicker;
 
-        DateTime data_selecionada_inicio = elemento.Date.Value;
+        DateTime dataSelecionada = elemento.Date.Value;
 
-        dtpFinal.MinimumDate = data_selecionada_inicio.AddDays(1);
-        dtpFinal.MaximumDate = data_selecionada_inicio.AddMonths(6);
+        dtpFinal.MinimumDate = dataSelecionada.AddDays(1);
+        dtpFinal.MaximumDate = dataSelecionada.AddMonths(6);
+
+        if (dtpFinal.Date < dtpFinal.MinimumDate)
+        {
+            dtpFinal.Date = dtpFinal.MinimumDate;
+        }
     }
+
+    private async void Evento_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CadastroEvento());
+    }
+
 }

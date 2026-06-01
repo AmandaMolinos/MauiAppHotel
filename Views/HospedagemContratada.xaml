@@ -4,10 +4,9 @@
              x:Class="MauiAppHotel.Views.HospedagemContratada"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{x:StaticResource Gray100}">
-    
-    <VerticalStackLayout VerticalOptions="CenterAndExpand">
 
-        <Label Text="Casal Simples" 
+    <VerticalStackLayout VerticalOptions="CenterAndExpand">
+        <Label Text="{Binding QuartoSelecionado.Descricao}" 
                TextColor="#172121"
                FontFamily="Kalam"
                FontSize="50"
@@ -15,36 +14,38 @@
 
         <Frame Margin="10">
             <HorizontalStackLayout>
-                <HorizontalStackLayout>
                     <Label Text="Adultos: " />
-                    <Label Text="2" TextColor="#172121" />
+                    <Label Text="{Binding QtdAdultos}" TextColor="#172121" />
                 </HorizontalStackLayout>
-                
-                <HorizontalStackLayout>
-                    <Label Text="Crianças: " />
-                    <Label Text="1" TextColor="#172121" />
-                </HorizontalStackLayout>
-            </HorizontalStackLayout>            
         </Frame>
+
+        <Frame Margin="10">
+            <HorizontalStackLayout>
+                <Label Text="Crianças: " />
+                <Label Text="{Binding QtdCriancas}" TextColor="#172121" />
+            </HorizontalStackLayout>
+        </Frame>
+
 
         <Frame Margin="10">
             <Grid ColumnDefinitions="*, *, *"
                   RowDefinitions="Auto, Auto">
-                <Label Grid.Row="0" Grid.Column="0" Text="Check-in:" />
-                <Label Grid.Row="0" Grid.Column="1" Text="Check-out:" />
-                <Label Grid.Row="0" Grid.Column="2" Text="Estadia:" />
                 
-                <Label Grid.Row="1" Grid.Column="0" Text="24/05/2026" />
-                <Label Grid.Row="1" Grid.Column="1" Text="25/05/2026" />
-                <Label Grid.Row="1" Grid.Column="2" Text="3" />
+                <Label Grid.Row="1" Grid.Column="0" Text="{Binding DataCheckIn, StringFormat='{}{0:dd/MM/yyyy}'}" 
+           TextColor="{StaticResource Primary}"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding DataCheckOut, StringFormat='{}{0:dd/MM/yyyy}'}" 
+           TextColor="{StaticResource Primary}"/>
+                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Estadia}" 
+           TextColor="{StaticResource Primary}"/>
             </Grid>
-
+            
         </Frame>
 
         <Frame Margin="10">
             <HorizontalStackLayout>
                 <Label Text="Valor Total: " />
-                <Label Text="RS 75,00" />
+                <Label Text="{Binding ValorTotal, StringFormat='{}{0:c}'}" 
+                TextColor="{StaticResource Primary}"/>
             </HorizontalStackLayout>
         </Frame>
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppHotel.Views.CadastroEvento"
+    Title="Cadastro de Evento">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                Text="Cadastro de Evento"
+                FontSize="28"
+                HorizontalOptions="Center"/>
+
+            <Entry
+                x:Name="txtNomeEvento"
+                Placeholder="Nome do Evento"/>
+
+            <DatePicker
+                x:Name="dtpInicio"/>
+
+            <DatePicker
+                x:Name="dtpTermino"/>
+
+            <Stepper
+                x:Name="stpParticipantes"
+                Minimum="1"
+                Maximum="1000"
+                Increment="1"/>
+
+            <Label
+                Text="{Binding Source={x:Reference stpParticipantes}, Path=Value,
+                StringFormat='Participantes: {0:F0}'}"/>
+
+            <Entry
+                x:Name="txtLocal"
+                Placeholder="Local do Evento"/>
+
+            <Entry
+                x:Name="txtCusto"
+                Placeholder="Custo por Participante"
+                Keyboard="Numeric"/>
+
+            <Button
+                Text="Cadastrar Evento"
+                Clicked="CadastrarEvento_Clicked"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
